@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.psachdev.glideplayground.databinding.FragmentFirstBinding
 
 /**
@@ -18,6 +20,7 @@ class FirstFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +37,14 @@ class FirstFragment : Fragment() {
 
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+        val imageView = _binding?.imageviewFirst
+        if(imageView != null){
+            Glide.with(this)
+                .load("http://goo.gl/gEgYUd")
+                .into(imageView);
+        }else{
+            Toast.makeText(this.context, "Empty image view", Toast.LENGTH_LONG).show()
         }
     }
 
